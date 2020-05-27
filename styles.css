@@ -2,10 +2,7 @@
   font-family: "Montserrat",sans-serif;
 }
 
-body {
-  background-color: #2B2733;
-}
-header,
+body,
 .activity-form,
 button,
 input {
@@ -18,18 +15,32 @@ header {
   align-items: center;
   height: 5em;
 }
+
+.activity-maker,
+aside {
+  background-color: #2b2733;
+}
 /* h#s */
-h1 {
+h1{
   margin: 0px;
   font-weight: lighter;
   font-size: 1.75em;
 }
 
+h2{
+  margin-bottom: .5em;
+}
+
 h2,
+h4,
 input {
   color: #CBC9CF;
   font-weight: lighter;
 }
+h4{
+  margin-top: 2em
+}
+
 header,
 h3,
 button {
@@ -42,15 +53,22 @@ h3 {
   margin-top: 3em;
 }
 /* activity form section */
+.main-section{
+  display: flex;
+  height: 100%;
+  align-content: stretch;
+}
+
 .activity-maker {
-  margin: 2em;
+  width: 65%;
+  padding: 0em 2em;
 }
 
 .activity-form {
   display: flex;
   flex-direction: column;
   height: min-content;
-  padding: 0em 5em 0em 5em;
+  padding: 0em 5em;
   box-shadow: 3px 3px .2em #26222D;
 }
 
@@ -95,7 +113,7 @@ button {
 }
 
 .center-button {
-  margin: 0em .2em 0em .2em;
+  margin: 0em .2em;
 }
 
 .start-activity-button-box {
@@ -105,7 +123,17 @@ button {
 }
 
 .start-button {
-  margin: 3em 0em 3em 0em;
+  margin: 3em 0em;
   background-color: #FFF;
   color: #46424D;
+}
+/* past activity section */
+.activity-log {
+  width: 35%;
+  padding: 0em 2em;
+  margin: 0em 0em 0em .2em;
+}
+
+.no-activity {
+  text-align: center;
 }
