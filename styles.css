@@ -10,6 +10,28 @@ header,
   background-color: #46424d;
 }
 
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5em;
+  color: #fff;
+}
+/* h#s */
+h1 {
+  margin: 0px;
+  font-weight: lighter;
+  font-size: 1.75em;
+}
+
+h2 {
+  color: #cbc9cf;
+  font-weight: lighter;
+}
+/* activity form section */
+.activity-maker {
+  margin: 2em;
+}
 .activity-form {
   display: flex;
   flex-direction: column;
@@ -32,25 +54,3 @@ header,
   width: 100%;
 }
 
-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 5em;
-  color: #fff;
-}
-
-h1 {
-  margin: 0px;
-  font-weight: lighter;
-  font-size: 1.75em;
-}
-
-h2 {
-  color: #cbc9cf;
-  font-weight: lighter;
-}
-
-.activity-maker {
-  margin: 2em;
-}
