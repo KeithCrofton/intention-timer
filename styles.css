@@ -1,6 +1,35 @@
+*{
+  font-family: "Montserrat",sans-serif;
+}
 
 body {
   background-color: #2b2733;
+}
+header,
+.activity-form {
+  background-color: #46424d;
+}
+
+.activity-form {
+  display: flex;
+  flex-direction: column;
+  height: min-content;
+}
+
+.category-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.time-values {
+  display: flex;
+  justify-content: space-between;
+}
+
+.start-activity-button {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
 }
 
 header {
@@ -8,7 +37,6 @@ header {
   justify-content: center;
   align-items: center;
   height: 5em;
-  background-color: #46424d;
   color: #fff;
 }
 
@@ -16,4 +44,13 @@ h1 {
   margin: 0px;
   font-weight: lighter;
   font-size: 1.75em;
+}
+
+h2 {
+  color: #cbc9cf;
+  font-weight: lighter;
+}
+
+.activity-maker {
+  margin: 2em;
 }
