@@ -3,11 +3,13 @@
 }
 
 body {
-  background-color: #2b2733;
+  background-color: #2B2733;
 }
 header,
-.activity-form {
-  background-color: #46424d;
+.activity-form,
+button,
+input {
+  background-color: #46424D;
 }
 
 header {
@@ -15,7 +17,6 @@ header {
   justify-content: center;
   align-items: center;
   height: 5em;
-  color: #fff;
 }
 /* h#s */
 h1 {
@@ -25,8 +26,13 @@ h1 {
 }
 
 h2 {
-  color: #cbc9cf;
+  color: #CBC9CF;
   font-weight: lighter;
+}
+header,
+h3,
+button {
+  color: #FFF;
 }
 /* activity form section */
 .activity-maker {
@@ -48,9 +54,22 @@ h2 {
   justify-content: space-between;
 }
 
-.start-activity-button {
+input {
+  border-width: .2px;
+  border-style: none none solid none;
+  border-color: #CBC9CF;
+}
+
+button {
+  border: 2px solid #FFF;
+}
+
+.start-activity-button-box {
   display: flex;
   justify-content: flex-end;
   width: 100%;
 }
-
+.start-button {
+  background-color: #FFF;
+  color: #46424D;
+}
