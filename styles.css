@@ -1,34 +1,44 @@
 *{
   font-family: "Montserrat",sans-serif;
 }
-
+/* big sections / bg colors */
 body,
-.activity-form,
 button,
-input {
+input,
+.activity-form {
   background-color: #46424D;
 }
 
 header {
-  display: flex;
-  justify-content: center;
   align-items: center;
+  display: flex;
   height: 5em;
+  justify-content: center;
 }
 
-.activity-maker,
-aside {
+.main-section {
+  align-content: stretch;
+  display: flex;
+  height: 100%;
+}
+
+aside,
+.activity-maker {
   background-color: #2b2733;
 }
 /* h#s */
-h1{
-  margin: 0px;
-  font-weight: lighter;
+h1 {
   font-size: 1.75em;
+  font-weight: lighter;
+  margin: 0px;
 }
 
-h2{
+h2 {
   margin-bottom: .5em;
+}
+
+h4{
+  margin-top: 2em
 }
 
 h2,
@@ -37,44 +47,33 @@ input {
   color: #CBC9CF;
   font-weight: lighter;
 }
-h4{
-  margin-top: 2em
-}
 
-header,
 h3,
+header,
 button {
   color: #FFF;
 }
-h3, button {
+
+h3,
+button {
   font-size: .9em;
 }
+
 h3 {
   margin-top: 3em;
 }
 /* activity form section */
-.main-section{
-  display: flex;
-  height: 100%;
-  align-content: stretch;
-}
-
 .activity-maker {
-  width: 65%;
   padding: 0em 2em;
+  width: 65%;
 }
 
 .activity-form {
+  box-shadow: 3px 3px .2em #26222D;
   display: flex;
   flex-direction: column;
   height: min-content;
   padding: 0em 5em;
-  box-shadow: 3px 3px .2em #26222D;
-}
-
-.activity-form,
-button {
-  border-radius: 5px 5px;
 }
 
 .category-buttons {
@@ -82,9 +81,28 @@ button {
   justify-content: space-between;
 }
 
-.time-values {
+.category-buttons > button {
+  align-items: center;
+  border: 2px solid #FFF;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  font-weight: lighter;
+  padding: .4em;
+  width: 10em;
+}
+
+button,
+.activity-form {
+  border-radius: 5px 5px;
+}
+
+.button-img {
+  padding: .2em;
+  width: 1.25em;
+}
+
+.center-button {
+  margin: 0em .2em;
 }
 
 input {
@@ -93,27 +111,9 @@ input {
   border-color: #CBC9CF;
 }
 
-.time {
-  width: 40%;
-}
-
-button {
+.time-values {
   display: flex;
-  align-items: center;
-  flex-direction: column;
-  border: 2px solid #FFF;
-  width: 10em;
-  font-weight: lighter;
-  padding: .4em;
-}
-
-.button-img {
-  width: 1.25em;
-  padding: .2em;
-}
-
-.center-button {
-  margin: 0em .2em;
+  justify-content: space-between;
 }
 
 .start-activity-button-box {
@@ -123,15 +123,18 @@ button {
 }
 
 .start-button {
-  margin: 3em 0em;
   background-color: #FFF;
+  border: none;
   color: #46424D;
+  font-size: 1.2em;
+  margin: 3em 0em;
+  padding: .6em 1.5em;
 }
 /* past activity section */
 .activity-log {
-  width: 35%;
-  padding: 0em 2em;
   margin: 0em 0em 0em .2em;
+  padding: 0em 2em;
+  width: 35%;
 }
 
 .no-activity {
