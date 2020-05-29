@@ -7,6 +7,7 @@ button,
 input,
 .activity-form {
   background-color: #46424D;
+  outline: none;
 }
 
 header {
@@ -106,9 +107,9 @@ button,
 }
 
 input {
-  border-width: .2px;
-  border-style: none none solid none;
   border-color: #CBC9CF;
+  border-style: none none solid none;
+  border-width: .2px;
 }
 
 .time-values {
