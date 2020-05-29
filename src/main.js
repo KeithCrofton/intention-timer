@@ -19,7 +19,7 @@ function activateButton(event) {
   var id = identifyButton(event);
   var color;
   var src;
-
+  debugger
   if (id == "studyButton") {
     color = "#B3FD78";
     src = "./assets/study-active.svg";
@@ -34,9 +34,13 @@ function activateButton(event) {
 }
 
 function colorButton(id, color, src) {
-    document.getElementById(id).style.color = color;
-    document.getElementById(id).style.borderColor = color;
-    document.querySelectorAll(`#${id}`)[1].src = src;
+  document.getElementById(id).style.color = color;
+  document.getElementById(id).style.borderColor = color;
+  document.querySelectorAll(`#${id}`)[1].src = src;
+}
+
+function addActive(event) {
+
 }
 
 //form functionality
