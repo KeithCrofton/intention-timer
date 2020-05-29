@@ -7,7 +7,36 @@ function handleClick(event) {
   var childClass = event.target.className
 
   if (parentClass == "category-buttons" || childClass == "button-img") {
+    activateButton(event)
   }
+}
+//Category Button Functions
+function identifyButton(event) {
+  return event.target.id;
+}
+
+function activateButton(event) {
+  var id = identifyButton(event);
+  var color;
+  var src;
+
+  if (id == "studyButton") {
+    color = "#B3FD78";
+    src = "./assets/study-active.svg";
+  } else if (id == "meditateButton") {
+    color = "#C278FD";
+    src = "./assets/meditate-active.svg";
+  } else if (id == "exerciseButton") {
+    color = "#FD8078";
+    src = "./assets/exercise-active.svg";
+  }
+  colorButton(id, color, src);
+}
+
+function colorButton(id, color, src) {
+    document.getElementById(id).style.color = color;
+    document.getElementById(id).style.borderColor = color;
+    document.querySelectorAll(`#${id}`)[1].src = src;
 }
 
 //form functionality
