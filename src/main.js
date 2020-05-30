@@ -1,4 +1,5 @@
 var mainSection = document.querySelector('.main-section');
+var currentCategory;
 var activities = [];
 
 mainSection.addEventListener('click', handleClick);
@@ -36,6 +37,8 @@ function determineButtonStyle(event) {
   var id = identifyButton(event);
   var color;
   var src;
+  currentCategory = id;
+
   if (id == "studyButton") {
     color = "#B3FD78";
     src = "./assets/study-active.svg";
@@ -57,12 +60,22 @@ function colorButton(id, color, src) {
 }
 //start button
 
-startActivity() {
-
+function startActivity() {
+  saveActivity();
+  hideElement(document.querySelector(".activity-maker"));
 }
 
-saveActivity() {
-  activities
+function saveActivity() {
+  var description = document.querySelectorAll("input")[0].value;
+  var minutes = document.querySelectorAll("input")[1].value;
+  var seconds = document.querySelectorAll("input")[2].value;
+  var newActivity = new Activity(currentCategory, description, minutes, seconds)
+
+  activities.push(newActivity)
+}
+
+function hideElement(element) {
+  element.classList.add("hidden")
 }
 // startActivity(){
 // take the values from the inputs and turn them into

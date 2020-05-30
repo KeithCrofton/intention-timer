@@ -2,9 +2,14 @@
   font-family: "Montserrat",sans-serif;
 }
 /* big sections / bg colors */
+.hidden {
+  display: none;
+}
+
 body,
 button,
 input,
+.clock-section,
 .activity-form {
   background-color: #46424D;
   outline: none;
@@ -24,7 +29,8 @@ header {
 }
 
 aside,
-.activity-maker {
+.activity-maker,
+.clock-view {
   background-color: #2b2733;
 }
 /* h#s */
@@ -56,7 +62,7 @@ button {
 }
 
 h3,
-button {
+button  {
   font-size: .9em;
 }
 
@@ -64,12 +70,14 @@ h3 {
   margin-top: 3em;
 }
 /* activity form section */
-.activity-maker {
+.activity-maker,
+.clock-view {
   padding: 0em 2em;
   width: 65%;
 }
 
-.activity-form {
+.activity-form,
+.clock-section {
   box-shadow: 3px 3px .2em #26222D;
   display: flex;
   flex-direction: column;
@@ -93,7 +101,8 @@ h3 {
 }
 
 button,
-.activity-form {
+.activity-form,
+.clock-section {
   border-radius: 5px 5px;
 }
 
@@ -140,4 +149,32 @@ input {
 
 .no-activity {
   text-align: center;
+}
+
+.clock-section {
+  align-items: center;
+  padding: 3em;
+  height: min-content;
+}
+
+.remaining-time {
+  color: #FFF;
+  font-size: 5em;
+  font-weight: bold;
+}
+
+.activity-description {
+  font-size: 1.5em;
+  color: #FFF;
+}
+
+.start-clock {
+  border-radius: 100%;
+  width: 9em;
+  height: 9em;
+  border-width: 3px;
+  border-style: solid;
+  font-size:1.7em;
+  margin: 1.5em;
+
 }
