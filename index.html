@@ -12,7 +12,7 @@
     <section class="main-section">
       <article class="activity-maker">
         <h2>New Activity</h2>
-        <div class="activity-form">
+        <div class="activity-form ">
           <h3>Select a category:</h3>
             <div class="category-buttons">
               <button id="studyButton">
@@ -33,16 +33,26 @@
           <div class="time-values">
             <div>
               <h3>Minutes</h3>
-              <input type=“number” name=“input-minutes-text” required=“required” id=“input-minutes-text” />
+              <input type="number" name="input-minutes-text" required="required"  id="input-minutes-text"
+              onkeydown="javascript: return event.keyCode !== 69"/>
             </div>
             <div>
               <h3>Seconds</h3>
-              <input type=“number” name=“input-seconds-text” required=“required” id=“input-seconds-text” />
+              <input type="number" name="input-seconds-text" required="required" id="input-seconds-text"
+              onkeydown="javascript: return event.keyCode !== 69"/>
             </div>
           </div>
           <div class="start-activity-button-box">
             <button class="start-button">START ACTIVITY</button>
           </div>
+        </div>
+      </article>
+      <article class="clock-view hidden">
+        <h2>Current Activity</h2>
+        <div class="clock-section">
+          <div class="activity-description">Deep Breathing</div>
+          <div class="remaining-time">05:00</div>
+          <button class="start-clock">START</button>
         </div>
       </article>
       <aside class="activity-log">
