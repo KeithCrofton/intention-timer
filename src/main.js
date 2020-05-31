@@ -2,7 +2,7 @@ var mainSection = document.querySelector('.main-section');
 var currentCategory;
 var activities = [];
 var inputValue = document.querySelectorAll("input");
-
+var interval;
 
 mainSection.addEventListener('click', handleClick);
 
@@ -15,7 +15,7 @@ function handleClick(event) {
   } else if (childClass == "start-button") {
     startActivity();
   } else if (childClass == "start-clock") {
-    var interval = setInterval(countDown, 1000);
+    interval = setInterval(countDown, 1000);
     document.querySelector(".decoy-button").classList.remove("hidden");
     document.querySelector(".start-clock").classList.add("hidden");
   }
@@ -132,8 +132,10 @@ function countDown() {
   var reminutes = (timeMS - (timeMS % 60000)) / 60000;
   var reseconds = timeMS % 60000 / 1000;
 
-  if(timeMS <= 0) {
+  if(timeMS < 0) {
     document.querySelector(".remaining-time").innerText = `0:00`;
+    window.alert("Your time is up and your activity has been completed")
+    clearInterval(interval);
   } else if (reseconds < 10) {
     reseconds = `0${reseconds}`;
     document.querySelector(".remaining-time").innerText = `${reminutes}:${reseconds}`;
