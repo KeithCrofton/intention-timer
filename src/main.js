@@ -16,6 +16,8 @@ function handleClick(event) {
     startActivity();
   } else if (childClass == "start-clock") {
     var interval = setInterval(countDown, 1000);
+    document.querySelector(".decoy-button").classList.remove("hidden");
+    document.querySelector(".start-clock").classList.add("hidden");
   }
 }
 
@@ -55,7 +57,7 @@ function determineButtonStyle(event) {
   }
 
   document.querySelector('.start-clock').style.borderColor = color;
-
+  document.querySelector('.decoy-button').style.borderColor = color;
   colorButton(id, color, src);
 }
 
@@ -81,7 +83,6 @@ function startActivity() {
 }
 
 function valueCheck() {
-  debugger;
   if (inputValue[0].value === "") {
     return "A description is required";
   } else if (inputValue[1].value === "") {
