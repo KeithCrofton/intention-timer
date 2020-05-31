@@ -135,7 +135,7 @@ function countDown() {
   if(timeMS < 0) {
     document.querySelector(".remaining-time").innerText = `0:00`;
     window.alert("Your time is up and your activity has been completed");
-    document.querySelector(".decoy-button").innerText = "Complete!";
+    document.querySelector(".decoy-button").innerText = "COMPLETE!";
     document.querySelector(".decoy-button").classList.add("flex-display");
     clearInterval(interval);
   } else if (reseconds < 10) {
