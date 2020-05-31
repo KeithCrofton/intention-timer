@@ -62,7 +62,8 @@ button {
 }
 
 h3,
-button  {
+button,
+.error  {
   font-size: .9em;
 }
 
@@ -139,6 +140,15 @@ input {
   font-size: 1.2em;
   margin: 3em 0em;
   padding: .6em 1.5em;
+}
+
+.error{
+  color: #efb7ec;
+}
+
+.warning{
+  width: 1.25em;
+  padding-right: .2em;
 }
 /* past activity section */
 .activity-log {
