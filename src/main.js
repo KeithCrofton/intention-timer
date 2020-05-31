@@ -1,6 +1,8 @@
 var mainSection = document.querySelector('.main-section');
 var currentCategory;
 var activities = [];
+var inputValue = document.querySelectorAll("input");
+
 
 mainSection.addEventListener('click', handleClick);
 
@@ -66,16 +68,40 @@ function colorButton(id, color, src) {
 //start button
 
 function startActivity() {
+  var error = valueCheck();
+  if (error !== "Go") {
+    var errorImage = '<img src="assets/warning.svg" class="warning"/>'
+    document.querySelector(".error").innerHTML = errorImage + error;
+  } else {
   saveActivity();
   hideElement(document.querySelector(".activity-maker"));
   showElement(document.querySelector(".clock-view"));
   setUpClock();
+  }
 }
 
+function valueCheck() {
+  debugger;
+  if (inputValue[0].value === "") {
+    return "A description is required";
+  } else if (inputValue[1].value === "") {
+    return "Please include how many minutes you would like to do the activity";
+  } else if (inputValue[2].value === "") {
+    return "Please include how many seconds you would like to do the activity";
+  } else if (currentCategory === undefined) {
+    return "Select a category button";
+  } else if (inputValue[2].value.length > 2) {
+    return "Please only enter two digits into the seconds field";
+  } else {
+    return "Go";
+  }
+}
+
+
 function saveActivity() {
-  var description = document.querySelectorAll("input")[0].value;
-  var minutes = document.querySelectorAll("input")[1].value;
-  var seconds = document.querySelectorAll("input")[2].value;
+  var description = inputValue[0].value;
+  var minutes = inputValue[1].value;
+  var seconds = inputValue[2].value;
   var newActivity = new Activity(currentCategory, description, minutes, seconds)
 
   activities.push(newActivity)
