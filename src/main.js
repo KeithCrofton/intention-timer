@@ -90,8 +90,8 @@ function valueCheck() {
     return "Please include how many seconds you would like to do the activity";
   } else if (currentCategory === undefined) {
     return "Select a category button";
-  } else if (inputValue[2].value.length > 2) {
-    return "Please only enter two digits into the seconds field";
+  } else if (inputValue[2].value.length !== 2) {
+    return "Please enter two digits into the seconds field";
   } else {
     return "Go";
   }
