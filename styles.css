@@ -178,7 +178,8 @@ input {
   color: #FFF;
 }
 
-.start-clock {
+.start-clock,
+.decoy-button {
   border-radius: 100%;
   width: 9em;
   height: 9em;
