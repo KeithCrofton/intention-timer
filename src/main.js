@@ -22,6 +22,8 @@ function handleClick(event) {
     document.querySelector(".decoy-button").style.display = "flex";
   } else if (childClass == "log-button") {
     logActivity();
+  } else if (childClass == "home") {
+    bringHome();
   }
 }
 
@@ -155,7 +157,7 @@ function logActivity() {
   showElement(".home-button-section");
   var logHtml = "";
   for (i = 0; i < activities.length; i++) {
-    logHtml += makeCard(activities[i], color)
+    logHtml += makeCard(activities[i], color);
   }
   document.querySelector(".no-activity").innerHTML = logHtml;
 }
@@ -174,5 +176,17 @@ function makeCard(activity, color) {
     <div class="line" style="border: 3px solid ${color}">
     </div>
   </div>`
+}
 
+function bringHome() {
+  showElement(".activity-maker");
+  hideElement(".home-button-section");
+  hideElement(".clock-view");
+  clearFields();
+}
+
+function clearFields() {
+  for (i = 0; i < 3; i++) {
+    inputValue[i].v = "";
+  }
 }
