@@ -15,11 +15,11 @@ function handleClick(event) {
     determineButtonStyle(event)
   } else if (childClass == "start-button") {
     startActivity();
+    hideElement(".decoy-button");
   } else if (childClass == "start-clock") {
     interval = setInterval(countDown, 1000);
-    document.querySelector(".decoy-button").classList.remove("hidden");
-    document.querySelector(".start-clock").classList.add("hidden");
-    document.querySelector(".decoy-button").style.display = "flex";
+    showElement(".decoy-button");
+    hideElement(".start-clock");
   } else if (childClass == "log-button") {
     logActivity();
   } else if (childClass == "home") {
@@ -83,6 +83,7 @@ function startActivity() {
   saveActivity();
   hideElement(".activity-maker");
   showElement(".clock-view");
+  showElement(".clock-section");
   setUpClock();
   }
 }
@@ -108,9 +109,9 @@ function saveActivity() {
   var description = inputValue[0].value;
   var minutes = inputValue[1].value;
   var seconds = inputValue[2].value;
-  var newActivity = new Activity(currentCategory, description, minutes, seconds)
+  var newActivity = new Activity(currentCategory, description, minutes, seconds, color)
 
-  activities.push(newActivity)
+  activities.unshift(newActivity)
 }
 
 function hideElement(element) {
@@ -122,6 +123,8 @@ function showElement(element) {
 }
 
 function setUpClock() {
+ hideElement(".decoy-button");
+ showElement(".start-clock");
  document.querySelector(".activity-description").innerText = activities[0].description;
  document.querySelector(".remaining-time").innerText = `${activities[0].minutes}:${activities[0].seconds}`;
 }
@@ -139,7 +142,7 @@ function countDown() {
 
   if(timeMS < 0) {
     document.querySelector(".remaining-time").innerText = `0:00`;
-    document.querySelector(".decoy-button").innerText = "COMPLETE!";
+    document.querySelector(".complete").innerText = "COMPLETE!";
     activities[0].completed = true;
 
     showElement(".log-button");
@@ -173,7 +176,7 @@ function makeCard(activity, color) {
       <h1>${activity.minutes} MIN ${secondInfo}</h1>
       <p class="card-descrpition">${activity.description}</p>
     </div>
-    <div class="line" style="border: 3px solid ${color}">
+    <div class="line" style="border: 3px solid ${activity.color}">
     </div>
   </div>`
 }
@@ -182,11 +185,15 @@ function bringHome() {
   showElement(".activity-maker");
   hideElement(".home-button-section");
   hideElement(".clock-view");
+  hideElement(".decoy-button");
+  hideElement(".log-button");
+  document.querySelector(".complete").innerText = "";
   clearFields();
 }
 
 function clearFields() {
   for (i = 0; i < 3; i++) {
-    inputValue[i].v = "";
+    inputValue[i].value = "";
   }
+  deactivateButton();
 }
