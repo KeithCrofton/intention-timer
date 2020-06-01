@@ -195,17 +195,22 @@ input {
 }
 
 .decoy-button {
+  font-size:1.7em;
   border-radius: 100%;
   width: 9em;
   height: 9em;
   border-width: 3px;
   border-style: solid;
-  display: none;
-  font-size:1.7em;
   margin: 1.5em;
+}
+
+.complete {
+  color: #fff;
+  height: 100%;
+  width: 100%;
+  display: flex;
   justify-content: center;
   align-items: center;
-  color: #fff;
 }
 
 .card {
@@ -213,6 +218,7 @@ input {
   justify-content: space-between;
   color: #fff;
   padding: 1em;
+  margin-bottom: .4em;
 }
 
 .card-info > h1 {
