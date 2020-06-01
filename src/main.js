@@ -3,6 +3,7 @@ var currentCategory;
 var activities = [];
 var inputValue = document.querySelectorAll("input");
 var interval;
+var color;
 
 mainSection.addEventListener('click', handleClick);
 
@@ -18,6 +19,9 @@ function handleClick(event) {
     interval = setInterval(countDown, 1000);
     document.querySelector(".decoy-button").classList.remove("hidden");
     document.querySelector(".start-clock").classList.add("hidden");
+    document.querySelector(".decoy-button").style.display = "flex";
+  } else if (childClass == "log-button") {
+    logActivity();
   }
 }
 
@@ -41,17 +45,16 @@ function deactivateButton() {
 
 function determineButtonStyle(event) {
   var id = identifyButton(event);
-  var color;
   var src;
   currentCategory = id;
 
-  if (id == "studyButton") {
+  if (id == "Study") {
     color = "#B3FD78";
     src = "./assets/study-active.svg";
-  } else if (id == "meditateButton") {
+  } else if (id == "Meditate") {
     color = "#C278FD";
     src = "./assets/meditate-active.svg";
-  } else if (id == "exerciseButton") {
+  } else if (id == "Exercise") {
     color = "#FD8078";
     src = "./assets/exercise-active.svg";
   }
@@ -134,9 +137,10 @@ function countDown() {
 
   if(timeMS < 0) {
     document.querySelector(".remaining-time").innerText = `0:00`;
-    window.alert("Your time is up and your activity has been completed");
     document.querySelector(".decoy-button").innerText = "COMPLETE!";
-    document.querySelector(".decoy-button").classList.add("flex-display");
+    activities[0].completed = true;
+
+    showElement(document.querySelector(".log-button"));
     clearInterval(interval);
   } else if (reseconds < 10) {
     reseconds = `0${reseconds}`;
@@ -144,4 +148,29 @@ function countDown() {
   } else {
     document.querySelector(".remaining-time").innerText = `${reminutes}:${reseconds}`;
   }
+}
+
+function logActivity() {
+  var logHtml = "";
+  for (i = 0; i < activities.length; i++) {
+    logHtml += makeCard(activities[i], color)
+  }
+  document.querySelector(".no-activity").innerHTML = logHtml;
+}
+
+function makeCard(activity, color) {
+  var secondInfo = "";
+  if (Number(activity.seconds) > 0) {
+    secondInfo = `${activity.seconds} SEC`;
+  }
+  return `<div class="card">
+    <div class="card-info">
+      <h3>${activity.category}</h3>
+      <h1>${activity.minutes} MIN ${secondInfo}</h1>
+      <p class="card-descrpition">${activity.description}</p>
+    </div>
+    <div class="line" style="border: 3px solid ${color}">
+    </div>
+  </div>`
+
 }
