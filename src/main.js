@@ -79,8 +79,8 @@ function startActivity() {
     document.querySelector(".error").innerHTML = errorImage + error;
   } else {
   saveActivity();
-  hideElement(document.querySelector(".activity-maker"));
-  showElement(document.querySelector(".clock-view"));
+  hideElement(".activity-maker");
+  showElement(".clock-view");
   setUpClock();
   }
 }
@@ -112,11 +112,11 @@ function saveActivity() {
 }
 
 function hideElement(element) {
-  element.classList.add("hidden")
+  document.querySelector(element).classList.add("hidden");
 }
 
 function showElement(element) {
-  element.classList.remove("hidden");
+  document.querySelector(element).classList.remove("hidden");
 }
 
 function setUpClock() {
@@ -140,7 +140,7 @@ function countDown() {
     document.querySelector(".decoy-button").innerText = "COMPLETE!";
     activities[0].completed = true;
 
-    showElement(document.querySelector(".log-button"));
+    showElement(".log-button");
     clearInterval(interval);
   } else if (reseconds < 10) {
     reseconds = `0${reseconds}`;
@@ -151,6 +151,8 @@ function countDown() {
 }
 
 function logActivity() {
+  hideElement(".clock-section");
+  showElement(".home-button-section");
   var logHtml = "";
   for (i = 0; i < activities.length; i++) {
     logHtml += makeCard(activities[i], color)
