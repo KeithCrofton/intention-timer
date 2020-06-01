@@ -1,10 +1,11 @@
-var mainSection = document.querySelector('.main-section');
-var currentCategory;
+//global variables
 var activities = [];
+var color;
+var currentCategory;
 var inputValue = document.querySelectorAll("input");
 var interval;
-var color;
-
+var mainSection = document.querySelector('.main-section');
+//event handler
 mainSection.addEventListener('click', handleClick);
 
 function handleClick(event) {
@@ -15,33 +16,38 @@ function handleClick(event) {
     determineButtonStyle(event)
   } else if (childClass == "start-button") {
     startActivity();
-    hideElement(".decoy-button");
   } else if (childClass == "start-clock") {
+    disableClockStartBtn();
     interval = setInterval(countDown, 1000);
-    showElement(".decoy-button");
-    hideElement(".start-clock");
   } else if (childClass == "log-button") {
     logActivity();
   } else if (childClass == "home") {
     bringHome();
   }
 }
+//short hand functions
+function hideElement(element) {
+  document.querySelector(element).classList.add("hidden");
+}
 
+function showElement(element) {
+  document.querySelector(element).classList.remove("hidden");
+}
 //Category Button Functions
 function identifyButton(event) {
   return event.target.id;
 }
 
 function deactivateButton() {
-  var active;
-  var notActive;
+  var activeImgs;
+  var notActiveImg;
   for ( i = 0; i < 3; i++ ){
       document.querySelectorAll("button")[i].style.color = "#FFF";
       document.querySelectorAll("button")[i].style.borderColor = "#FFF";
 
-      active = document.querySelectorAll("button")[i].innerHTML;
-      notActive = active.replace("-active", "");
-      document.querySelectorAll("button")[i].innerHTML = notActive;
+      activeImgs = document.querySelectorAll("button")[i].innerHTML;
+      notActiveImg = activeImgs.replace("-active", "");
+      document.querySelectorAll("button")[i].innerHTML = notActiveImg;
   }
 }
 
@@ -61,8 +67,6 @@ function determineButtonStyle(event) {
     src = "./assets/exercise-active.svg";
   }
 
-  document.querySelector('.start-clock').style.borderColor = color;
-  document.querySelector('.decoy-button').style.borderColor = color;
   colorButton(id, color, src);
 }
 
@@ -71,9 +75,11 @@ function colorButton(id, color, src) {
   document.getElementById(id).style.color = color;
   document.getElementById(id).style.borderColor = color;
   document.querySelectorAll(`#${id}`)[1].src = src;
-}
-//start button
 
+  document.querySelector('.start-clock').style.borderColor = color;
+  document.querySelector('.decoy-button').style.borderColor = color;
+}
+//start clock page
 function startActivity() {
   var error = valueCheck();
   if (error !== "Go") {
@@ -81,9 +87,7 @@ function startActivity() {
     document.querySelector(".error").innerHTML = errorImage + error;
   } else {
   saveActivity();
-  hideElement(".activity-maker");
-  showElement(".clock-view");
-  showElement(".clock-section");
+  viewClock();
   setUpClock();
   }
 }
@@ -99,11 +103,12 @@ function valueCheck() {
     return "Select a category button";
   } else if (inputValue[2].value.length !== 2) {
     return "Please enter two digits into the seconds field";
+  } else if (Number(inputValue[1].value) == 0 && inputValue[2].value === "00") {
+    return "Unless you're The Flash, give yourself some more time homie"
   } else {
     return "Go";
   }
 }
-
 
 function saveActivity() {
   var description = inputValue[0].value;
@@ -113,48 +118,49 @@ function saveActivity() {
 
   activities.unshift(newActivity)
 }
-
-function hideElement(element) {
-  document.querySelector(element).classList.add("hidden");
-}
-
-function showElement(element) {
-  document.querySelector(element).classList.remove("hidden");
-}
-
+// count-down clock functions
 function setUpClock() {
- hideElement(".decoy-button");
- showElement(".start-clock");
+ enableClockStartBtn();
  document.querySelector(".activity-description").innerText = activities[0].description;
  document.querySelector(".remaining-time").innerText = `${activities[0].minutes}:${activities[0].seconds}`;
 }
 
 function countDown() {
-  var stringTime = document.querySelector(".remaining-time").innerText;
-  var countMinuteMS = Number(stringTime.slice(0, -3)) * 60000;
-  var countSecondMS = stringTime.slice(-2, stringTime.length) * 1000;
-  var timeMS = countMinuteMS + countSecondMS;
+  // debugger
+  var timeInMS = convertRemainingTime();
+  convertNewTime(timeInMS);
+}
 
-  timeMS -= 1000;
+function convertRemainingTime() {
+  var remainingTime = document.querySelector(".remaining-time").innerText;
+  var minutesInMS = Number(remainingTime.slice(0, -3)) * 60000;
+  var secondsInMS = remainingTime.slice(-2, remainingTime.length) * 1000;
+  var timeInMS = minutesInMS + secondsInMS;
 
-  var reminutes = (timeMS - (timeMS % 60000)) / 60000;
-  var reseconds = timeMS % 60000 / 1000;
+  timeInMS -= 1000;
 
-  if(timeMS < 0) {
+  return timeInMS
+}
+
+function convertNewTime(milliseconds) {
+  var remainingMin = (milliseconds - (milliseconds % 60000)) / 60000;
+  var remainingSec = milliseconds % 60000 / 1000;
+
+  if(milliseconds == 0) {
+    activities[0].completed = true;
     document.querySelector(".remaining-time").innerText = `0:00`;
     document.querySelector(".complete").innerText = "COMPLETE!";
-    activities[0].completed = true;
 
     showElement(".log-button");
     clearInterval(interval);
-  } else if (reseconds < 10) {
-    reseconds = `0${reseconds}`;
-    document.querySelector(".remaining-time").innerText = `${reminutes}:${reseconds}`;
+  } else if (remainingSec < 10) {
+    remainingSec = `0${remainingSec}`;
+    document.querySelector(".remaining-time").innerText = `${remainingMin}:${remainingSec}`;
   } else {
-    document.querySelector(".remaining-time").innerText = `${reminutes}:${reseconds}`;
+    document.querySelector(".remaining-time").innerText = `${remainingMin}:${remainingSec}`;
   }
 }
-
+// activity log functions
 function logActivity() {
   hideElement(".clock-section");
   showElement(".home-button-section");
@@ -162,7 +168,7 @@ function logActivity() {
   for (i = 0; i < activities.length; i++) {
     logHtml += makeCard(activities[i], color);
   }
-  document.querySelector(".no-activity").innerHTML = logHtml;
+  document.querySelector(".activity-cards").innerHTML = logHtml;
 }
 
 function makeCard(activity, color) {
@@ -180,6 +186,23 @@ function makeCard(activity, color) {
     </div>
   </div>`
 }
+//page-view changers
+function viewClock () {
+  hideElement(".decoy-button");
+  hideElement(".activity-maker");
+  showElement(".clock-view");
+  showElement(".clock-section");
+}
+
+function enableClockStartBtn() {
+  hideElement(".decoy-button");
+  showElement(".start-clock");
+}
+
+function disableClockStartBtn() {
+  showElement(".decoy-button");
+  hideElement(".start-clock");
+}
 
 function bringHome() {
   showElement(".activity-maker");
@@ -187,6 +210,7 @@ function bringHome() {
   hideElement(".clock-view");
   hideElement(".decoy-button");
   hideElement(".log-button");
+  document.querySelector(".error").innerHTML = "";
   document.querySelector(".complete").innerText = "";
   clearFields();
 }
