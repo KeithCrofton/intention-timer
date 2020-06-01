@@ -10,7 +10,8 @@ body,
 button,
 input,
 .clock-section,
-.activity-form {
+.activity-form,
+.card {
   background-color: #46424D;
   outline: none;
 }
@@ -50,7 +51,8 @@ h4 {
 
 h2,
 h4,
-input {
+input,
+.card-description {
   color: #CBC9CF;
   font-weight: lighter;
 }
@@ -103,7 +105,8 @@ h3 {
 
 button,
 .activity-form,
-.clock-section {
+.clock-section,
+.card {
   border-radius: 5px 5px;
 }
 
@@ -133,7 +136,8 @@ input {
   width: 100%;
 }
 
-.start-button {
+.start-button,
+.log-button {
   background-color: #FFF;
   border: none;
   color: #46424D;
@@ -194,6 +198,7 @@ input {
   height: 9em;
   border-width: 3px;
   border-style: solid;
+  display: none;
   font-size:1.7em;
   margin: 1.5em;
   justify-content: center;
@@ -201,6 +206,34 @@ input {
   color: #fff;
 }
 
-.flex-display {
+.card {
   display: flex;
+  justify-content: space-between;
+  color: #fff;
+  padding: 1em;
+}
+
+.card-info > h1 {
+  font-size: 1em;
+}
+
+.card-info > h3 {
+  padding-top: 0em;
+  margin: 0em;
+}
+
+.card-info > p {
+  margin: .4em 0em;
+  color: #cbc9cf;
+  text-align: left;
+}
+
+.card-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.line {
+  height: 1.5em;
 }
