@@ -2,16 +2,14 @@
   font-family: "Montserrat",sans-serif;
 }
 /* big sections / bg colors */
-.hidden {
-  display: none;
-}
 
 body,
 button,
 input,
 .clock-section,
 .activity-form,
-.card {
+.card,
+.home-button-section {
   background-color: #46424D;
   outline: none;
 }
@@ -80,7 +78,8 @@ h3 {
 }
 
 .activity-form,
-.clock-section {
+.clock-section,
+.home-button-section {
   box-shadow: 3px 3px .2em #26222D;
   display: flex;
   flex-direction: column;
@@ -106,7 +105,8 @@ h3 {
 button,
 .activity-form,
 .clock-section,
-.card {
+.card,
+.home-button-section {
   border-radius: 5px 5px;
 }
 
@@ -137,7 +137,8 @@ input {
 }
 
 .start-button,
-.log-button {
+.log-button,
+.home {
   background-color: #FFF;
   border: none;
   color: #46424D;
@@ -165,7 +166,8 @@ input {
   text-align: center;
 }
 
-.clock-section {
+.clock-section,
+.home-button-section {
   align-items: center;
   padding: 3em;
   height: min-content;
@@ -236,4 +238,8 @@ input {
 
 .line {
   height: 1.5em;
+}
+
+.hidden {
+  display: none;
 }
