@@ -137,13 +137,21 @@ input {
 }
 
 .start-button,
-.log-button,
 .home {
   background-color: #FFF;
   border: none;
   color: #46424D;
   font-size: 1.2em;
   margin: 3em 0em;
+  padding: .6em 1.5em;
+}
+
+.log-button {
+  background-color: #FFF;
+  border: none;
+  color: #46424D;
+  font-size: 1.2em;
+  margin: 2em 0em;
   padding: .6em 1.5em;
 }
 
@@ -160,16 +168,22 @@ input {
   margin: 0em 0em 0em .2em;
   padding: 0em 2em;
   width: 35%;
+  overflow: scroll;
 }
 
 .activity-cards {
   text-align: center;
 }
 
-.clock-section,
 .home-button-section {
   align-items: center;
   padding: 3em;
+  height: min-content;
+}
+
+.clock-section {
+  align-items: center;
+  padding: 3em 3em 0em 3em;
   height: min-content;
 }
 
