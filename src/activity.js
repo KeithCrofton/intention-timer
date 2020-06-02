@@ -18,6 +18,6 @@ class Activity {
   }
 
   saveToStorage() {
-
+    localStorage.setItem( "activities", JSON.stringify(activities));
   }
 }
