@@ -1,5 +1,5 @@
 //global variables
-var activities = [];
+var activities = retrieveFromStorage() || [];
 var color;
 var currentCategory;
 var inputValue = document.querySelectorAll("input");
@@ -7,6 +7,7 @@ var interval;
 var mainSection = document.querySelector('.main-section');
 //event handler
 mainSection.addEventListener('click', handleClick);
+window.onload = logActivity;
 
 function handleClick(event) {
   var parentClass = event.target.parentElement.className;
@@ -81,6 +82,7 @@ function colorButton(id, color, src) {
 }
 //start clock page
 function startActivity() {
+  hideElement(".home-button-section");
   var error = valueCheck();
   if (error !== "Go") {
     var errorImage = '<img src="assets/warning.svg" class="warning"/>'
@@ -114,9 +116,11 @@ function saveActivity() {
   var description = inputValue[0].value;
   var minutes = inputValue[1].value;
   var seconds = inputValue[2].value;
-  var newActivity = new Activity(currentCategory, description, minutes, seconds, color)
+  var newActivity = new Activity(currentCategory, description, minutes, seconds, color);
 
-  activities.unshift(newActivity)
+  activities.unshift(newActivity);
+
+  activities[0].saveToStorage();
 }
 // count-down clock functions
 function setUpClock() {
@@ -165,10 +169,20 @@ function logActivity() {
   hideElement(".clock-section");
   showElement(".home-button-section");
   var logHtml = "";
+  var noActivityMsg = `<h4>You haven't logged any activities. <br />
+    Complete the form to the left to get started!</h4>`
   for (i = 0; i < activities.length; i++) {
     logHtml += makeCard(activities[i], color);
   }
+  if (activities.length === 0) {
+  document.querySelector(".activity-cards").innerHTML = noActivityMsg;
+  } else {
   document.querySelector(".activity-cards").innerHTML = logHtml;
+  }
+}
+
+function retrieveFromStorage() {
+  return JSON.parse(localStorage.getItem("activities"))
 }
 
 function makeCard(activity, color) {
@@ -179,7 +193,7 @@ function makeCard(activity, color) {
   return `<div class="card">
     <div class="card-info">
       <h3>${activity.category}</h3>
-      <h1>${activity.minutes} MIN ${secondInfo}</h1>
+      <h1>${Number(activity.minutes)} MIN ${secondInfo}</h1>
       <p class="card-descrpition">${activity.description}</p>
     </div>
     <div class="line" style="border: 3px solid ${activity.color}">
