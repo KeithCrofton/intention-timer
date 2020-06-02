@@ -83,7 +83,7 @@ h3 {
   box-shadow: 3px 3px .2em #26222D;
   display: flex;
   flex-direction: column;
-  height: min-content;
+  height: 35em;
   padding: 0em 5em;
 }
 
@@ -123,11 +123,13 @@ input {
   border-color: #CBC9CF;
   border-style: none none solid none;
   border-width: .2px;
+  width: 100%;
 }
 
 .time-values {
   display: flex;
   justify-content: space-between;
+  width: 100%;
 }
 
 .start-activity-button-box{
@@ -178,13 +180,11 @@ input {
 .home-button-section {
   align-items: center;
   padding: 3em;
-  height: min-content;
 }
 
 .clock-section {
   align-items: center;
   padding: 3em 3em 0em 3em;
-  height: min-content;
 }
 
 .remaining-time {
@@ -262,4 +262,41 @@ input {
 
 .hidden {
   display: none;
+}
+
+.home {
+  margin: auto;
+}
+
+@media only screen and (max-width: 55em) {
+
+  body {
+
+  }
+
+  .main-section {
+    flex-direction: column;
+  }
+
+  .activity-maker,
+  .clock-view,
+  .activity-log {
+    width: 100%;
+    padding-bottom: 2.3em;
+  }
+
+  .activity-log {
+    margin-left: 0em;
+    padding-bottom: 2em;
+  }
+
+  .activity-log {
+    overflow: visible;
+    margin-top: .2em;
+  }
+
+  input > #input-minutes-text {
+    width: 90%;
+  }
+
 }

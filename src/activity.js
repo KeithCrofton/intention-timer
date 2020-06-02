@@ -7,12 +7,13 @@ class Activity {
     this.seconds = seconds;
     this.completed = false;
     this.color = color;
-    this.timeLeft = this.minutes * 60 + this.seconds;
+    this.timeLeft = Number(this.minutes) * 60 + Number(this.seconds);
+    this.interval;
   }
 
   countDown() {
     var self = this;
-    var interval = setInterval(function() {
+    self.interval = setInterval(function() {
       self.timeLeft -= 1
       self.printTime(self.timeLeft);
     }, 1000)
@@ -39,7 +40,7 @@ class Activity {
     this.completed = true;
     document.querySelector(".complete").innerText = "COMPLETE!";
     showElement(".log-button");
-    clearInterval(interval);
+    clearInterval(self.interval);
   }
 
   saveToStorage() {
