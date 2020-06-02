@@ -3,7 +3,6 @@ var activities = retrieveFromStorage() || [];
 var color;
 var currentCategory;
 var inputValue = document.querySelectorAll("input");
-var interval;
 var mainSection = document.querySelector('.main-section');
 //event handler
 mainSection.addEventListener('click', handleClick);
@@ -19,7 +18,7 @@ function handleClick(event) {
     startActivity();
   } else if (childClass == "start-clock") {
     disableClockStartBtn();
-    interval = setInterval(countDown, 1000);
+    activities[0].countDown();
   } else if (childClass == "log-button") {
     logActivity();
   } else if (childClass == "home") {
@@ -127,42 +126,6 @@ function setUpClock() {
  enableClockStartBtn();
  document.querySelector(".activity-description").innerText = activities[0].description;
  document.querySelector(".remaining-time").innerText = `${activities[0].minutes}:${activities[0].seconds}`;
-}
-
-function countDown() {
-  // debugger
-  var timeInMS = convertRemainingTime();
-  convertNewTime(timeInMS);
-}
-
-function convertRemainingTime() {
-  var remainingTime = document.querySelector(".remaining-time").innerText;
-  var minutesInMS = Number(remainingTime.slice(0, -3)) * 60000;
-  var secondsInMS = remainingTime.slice(-2, remainingTime.length) * 1000;
-  var timeInMS = minutesInMS + secondsInMS;
-
-  timeInMS -= 1000;
-
-  return timeInMS
-}
-
-function convertNewTime(milliseconds) {
-  var remainingMin = (milliseconds - (milliseconds % 60000)) / 60000;
-  var remainingSec = milliseconds % 60000 / 1000;
-
-  if(milliseconds == 0) {
-    activities[0].completed = true;
-    document.querySelector(".remaining-time").innerText = `0:00`;
-    document.querySelector(".complete").innerText = "COMPLETE!";
-
-    showElement(".log-button");
-    clearInterval(interval);
-  } else if (remainingSec < 10) {
-    remainingSec = `0${remainingSec}`;
-    document.querySelector(".remaining-time").innerText = `${remainingMin}:${remainingSec}`;
-  } else {
-    document.querySelector(".remaining-time").innerText = `${remainingMin}:${remainingSec}`;
-  }
 }
 // activity log functions
 function logActivity() {
