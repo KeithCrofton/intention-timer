@@ -135,7 +135,9 @@ function logActivity() {
   var noActivityMsg = `<h4>You haven't logged any activities. <br />
     Complete the form to the left to get started!</h4>`
   for (i = 0; i < activities.length; i++) {
-    logHtml += makeCard(activities[i], color);
+    if (activities[i].completed === true) {
+      logHtml += makeCard(activities[i], color);
+    }
   }
   if (activities.length === 0) {
   document.querySelector(".activity-cards").innerHTML = noActivityMsg;
