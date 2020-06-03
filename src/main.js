@@ -4,6 +4,7 @@ var color;
 var currentCategory;
 var inputValue = document.querySelectorAll("input");
 var mainSection = document.querySelector('.main-section');
+var error = "Go";
 //event handler
 mainSection.addEventListener('click', handleClick);
 window.onload = logActivity;
@@ -82,7 +83,7 @@ function colorButton(id, color, src) {
 //start clock page
 function startActivity() {
   hideElement(".home-button-section");
-  var error = valueCheck();
+  valueCheck();
   if (error !== "Go") {
     var errorImage = '<img src="assets/warning.svg" class="warning"/>'
     document.querySelector(".error").innerHTML = errorImage + error;
@@ -94,20 +95,17 @@ function startActivity() {
 }
 
 function valueCheck() {
+  if (Number(inputValue[1].value) == 0 && Number(inputValue[2].value) === 0) {
+    error = "Unless you're The Flash, give yourself some more time homie"
+  }
   if (inputValue[0].value === "") {
-    return "A description is required";
-  } else if (inputValue[1].value === "") {
-    return "Please include how many minutes you would like to do the activity";
-  } else if (inputValue[2].value === "") {
-    return "Please include how many seconds you would like to do the activity";
-  } else if (currentCategory === undefined) {
-    return "Select a category button";
-  } else if (inputValue[2].value.length !== 2) {
-    return "Please enter two digits into the seconds field";
-  } else if (Number(inputValue[1].value) == 0 && inputValue[2].value === "00") {
-    return "Unless you're The Flash, give yourself some more time homie"
-  } else {
-    return "Go";
+    error = "A description is required";
+  }
+  if (currentCategory === undefined) {
+    error = "Select a category button";
+  }
+  if (inputValue[0].value !== "" && currentCategory !== undefined && Number(inputValue[1].value) + Number(inputValue[2].value) !== 0){
+    error = "Go";
   }
 }
 
@@ -123,6 +121,12 @@ function saveActivity() {
 }
 // count-down clock functions
 function setUpClock() {
+  if (activities[0].minutes === "") {
+    activities[0].minutes = "0";
+  }
+  if (activities[0].seconds === "") {
+    activities[0].seconds = "00";
+  }
  enableClockStartBtn();
  document.querySelector(".activity-description").innerText = activities[0].description;
  document.querySelector(".remaining-time").innerText = `${activities[0].minutes}:${activities[0].seconds}`;
@@ -195,6 +199,7 @@ function bringHome() {
 }
 
 function clearFields() {
+  currentCategory = undefined;
   for (i = 0; i < 3; i++) {
     inputValue[i].value = "";
   }
