@@ -20,7 +20,6 @@ class Activity {
   }
 
   printTime(timeLeft) {
-    // debugger
     var minutesLeft = (timeLeft - (timeLeft % 60)) / 60;
     var secondsLeft = timeLeft % 60;
     var remainingTime = document.querySelector(".remaining-time");
@@ -37,6 +36,7 @@ class Activity {
   }
 
   markComplete() {
+    var self = this;
     this.completed = true;
     document.querySelector(".complete").innerText = "COMPLETE!";
     showElement(".log-button");
