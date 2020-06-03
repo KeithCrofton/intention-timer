@@ -2,6 +2,10 @@
   font-family: "Montserrat",sans-serif;
 }
 /* big sections / bg colors */
+body {
+  margin: 0em;
+  overflow-x: hidden;
+}
 
 body,
 button,
@@ -100,6 +104,7 @@ h3 {
   font-weight: lighter;
   padding: .4em;
   width: 10em;
+  height: 4em;
 }
 
 button,
@@ -120,6 +125,7 @@ input {
   border-style: none none solid none;
   border-width: .2px;
   width: 100%;
+  -webkit-appearance: none;
 }
 
 .time-values {
@@ -270,6 +276,14 @@ input {
 
 @media only screen and (max-width: 55em) {
 
+  body {
+    background-color: #2b2733;
+  }
+
+  header {
+    background-color: #46424D;
+  }
+
   .main-section {
     flex-direction: column;
   }
@@ -277,9 +291,12 @@ input {
   .activity-maker,
   .clock-view,
   .activity-log {
-    width: 100%;
+    width: 88%;
     padding-bottom: 2.3em;
     min-width: 20em;
+    border-bottom: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: #46424D;
   }
 
   .activity-log {
@@ -300,11 +317,23 @@ input {
 
 @media only screen and (max-width: 30em) {
 
+body {
+  background-color: #2b2733;
+}
+
+header {
+  background-color: #46424D;
+}
+
+  .activity-maker,
+  .clock-view,
+  .activity-log {
+    width: 86%;
+}
 
   .activity-log {
     height: 100%
   }
-
 
 .category-buttons {
   flex-direction: column;
@@ -336,19 +365,3 @@ h3{
   font-size: .8em;
 }
 }
-
-/* @media screen and (min-width: 80em){
-  .activity-maker > h2 {
-    width:33em;
-    margin:.5em auto;
-    align-content:center;
-    display:flex;
-}
-
-.activity-maker,
-.clock-view,
-.activity-log {
-  width:40em;
-  margin:auto;
-}
-} */
