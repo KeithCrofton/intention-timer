@@ -125,7 +125,6 @@ input {
   border-style: none none solid none;
   border-width: .2px;
   width: 100%;
-  -webkit-appearance: none;
 }
 
 .time-values {
@@ -239,6 +238,7 @@ input {
   color: #fff;
   padding: 1em;
   margin-bottom: .4em;
+  box-shadow: 3px 3px .2em #26222D;
 }
 
 .card-info > h1 {
